@@ -43,7 +43,7 @@ then
         echo "installing git sucess"
     fi
 else 
-    echo "mysql is already installed"
+    echo "git is already installed"
 fi
 
 # if [ $? -ne 0 ]
