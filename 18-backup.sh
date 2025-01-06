@@ -33,4 +33,7 @@ then
     USAGE
 fi
 
+mkdir -p /home/ec2-user/shellscript-logs
+
+
 echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
