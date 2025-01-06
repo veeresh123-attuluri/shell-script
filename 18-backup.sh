@@ -15,20 +15,14 @@ LOG_FILE=$(echo $0 | awk -F "/" '{print $NF}' | cut -d "." -f1 )
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
-VALIDATE(){
-    if [ $1 -ne 0 ]
-    then
-        echo -e "$2 ... $R FAILURE $N"
-        exit 1
-    else
-        echo -e "$2 ... $G SUCCESS $N"
-    fi
+USAGE(){
+    #echo -e "$R USAGE:: $N sh 18-backup.sh <SOURCE_DIR> <DEST_DIR> <DAYS(Optional)>"
+    echo -e "$R USAGE:: $N backup <SOURCE_DIR> <DEST_DIR> <DAYS(Optional)>"
+    exit 1
 }
 
-USAGE(){
-    echo -e "$R USAGE:: $N sh 18-backup.sh <SOURCE_DIR> <DEST_DIR> <DAYS(Optional)>"
-    exit 1
-    }
+mkdir -p /home/ec2-user/shellscript-logs
+
 if [ $# -lt 2 ]
 then
     USAGE
@@ -45,10 +39,6 @@ then
     echo -e "$DEST_DIR Does not exist...Please check"
     exit 1
 fi
-
-
-mkdir -p /home/ec2-user/shellscript-logs
-
 
 echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
